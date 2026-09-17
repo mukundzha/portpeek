@@ -1,6 +1,6 @@
 # Portpeek
 
-Portpeek Beta 1 is a lightweight Linux CLI for inspecting listening TCP ports and the processes that own them.
+Portpeek is a lightweight Linux CLI for inspecting listening TCP ports and the processes that own them.
 
 ## Requirements
 
