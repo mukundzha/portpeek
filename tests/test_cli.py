@@ -12,6 +12,16 @@ def test_cli_filters_by_port(monkeypatch, capsys) -> None:
     assert "3000" in capsys.readouterr().out
 
 
+def test_cli_missing_port_exits_nonzero(monkeypatch, capsys) -> None:
+    monkeypatch.setattr(
+        "portpeek.cli.LinuxPortDiscovery.listening_ports",
+        lambda self: [PortRecord("tcp", "127.0.0.1", 3000, 42, "python", "tester")],
+    )
+
+    assert main(["8080"]) == 1
+    assert "No listening TCP process found on port 8080." in capsys.readouterr().out
+
+
 def test_cli_rejects_invalid_port(capsys) -> None:
     try:
         main(["70000"])

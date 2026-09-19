@@ -32,5 +32,8 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     if args.port is not None:
         records = [record for record in records if record.port == args.port]
+        if not records:
+            print(render(records, args.port))
+            return 1
     print(render(records, args.port))
     return 0
